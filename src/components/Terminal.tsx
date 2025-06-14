@@ -37,15 +37,12 @@ const COMMANDS: { [key: string]: string[] | ((args: string[]) => string[]) } = {
   ],
   sig: [
     "Our SIGs (Special Interest Groups) include:",
-    "- webdev: Web Development technologies & frameworks",
-    "- AI: Artificial Intelligence and Machine Learning initiatives",
-    "- security: Cybersecurity and Capture The Flag challenges",
-    "- projects: Open source and club-wide projects",
-    "Come to our next meeting to join a SIG!",
+    "Axis, a group that researches or does anything that interests them.",
+    "and stay tuned for more SIGs coming soon!",
   ],
 };
 
-const TERMINAL_PREFIX = "occ@terminal:~$";
+const TERMINAL_PREFIX = "occ@axis:~$";
 
 function scrollToBottom(container: HTMLDivElement | null) {
   if (container) {
