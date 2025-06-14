@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 
 const SEQUENCE = [
@@ -32,6 +31,9 @@ const SEQUENCE = [
 
 const LINE_DELAY = 70; // ms per line
 
+const ASCII_INDEX_START = SEQUENCE.findIndex(l => l.startsWith("██") || l.startsWith(" █"));
+const ASCII_INDEX_END = SEQUENCE.findIndex(l => l.startsWith("[System OK]"));
+
 interface Props {
   onComplete: () => void;
 }
@@ -57,11 +59,22 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
 
   return (
     <div className="mx-0 sm:mx-[-1rem] xs:mx-[-0.5rem] font-mono">
-      {lines.map((l, i) => (
-        <div key={i} className="whitespace-pre-wrap sm:whitespace-pre-line break-words">
-          {l}
-        </div>
-      ))}
+      {lines.map((l, i) => {
+        const isAscii =
+          i >= ASCII_INDEX_START && i < ASCII_INDEX_END && l.trim().length > 0;
+        return (
+          <div
+            key={i}
+            className={
+              "whitespace-pre-wrap sm:whitespace-pre-line break-words" +
+              (isAscii ? " font-jetbrains leading-none text-green-400 text-base sm:text-sm" : "")
+            }
+            style={isAscii ? { fontWeight: 700 } : {}}
+          >
+            {l}
+          </div>
+        );
+      })}
     </div>
   );
 };

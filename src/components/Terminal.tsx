@@ -148,9 +148,21 @@ const Terminal: React.FC = () => {
           wordBreak: "break-word",
         }}
       >
-        {history.map((line, idx) => (
-          <div key={idx} className={`whitespace-pre-wrap sm:whitespace-pre-line break-words ${idx < OCC_ASCII.length ? 'font-mono' : ''}`}>{line}</div>
-        ))}
+        {history.map((line, idx) => {
+          // Show font-jetbrains, leading-none, green and bold for OCC_ASCII
+          const isAscii = idx < OCC_ASCII.length;
+          return (
+            <div
+              key={idx}
+              className={`whitespace-pre-wrap sm:whitespace-pre-line break-words ${
+                isAscii ? "font-jetbrains leading-none text-green-400 font-bold text-base sm:text-sm" : ""
+              }`}
+              style={isAscii ? { fontWeight: 700 } : {}}
+            >
+              {line}
+            </div>
+          );
+        })}
         <div className="flex items-center w-full py-1 gap-1 sm:gap-0">
           <span className="text-green-400 min-w-fit">{TERMINAL_PREFIX}&nbsp;</span>
           <input
