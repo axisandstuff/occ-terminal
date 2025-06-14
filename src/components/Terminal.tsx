@@ -22,7 +22,7 @@ const INIT_PROMPTS = [
 
 const COMMANDS: { [key: string]: string[] | ((args: string[]) => string[]) } = {
   about: [
-    "Open Computing Club (OCC) at your university is a student group dedicated to collaborative exploration of technology.",
+    "Open Computing Club (OCC) at UTP is a student group dedicated to collaborative exploration of technology.",
     "We host workshops, events, and innovative Special Interest Groups (SIGs) for all levels.",
     "Type 'SIG' to learn more about our SIGs or 'help' for additional commands.",
   ],
