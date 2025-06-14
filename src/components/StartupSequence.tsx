@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 const SEQUENCE = [
-  "PhoenixBIOS 4.0 Release 6.0     Copyright 1985-1998 Phoenix Technologies Ltd.",
+  "AxisxBIOS 4.0 Release 6.0     Copyright 1985-1998 Axis Technologies Ltd.",
   "All Rights Reserved",
   "",
   "CPU: Intel® Pentium™ III 667 MHz",
