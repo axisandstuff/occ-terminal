@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import StartupSequence from "./StartupSequence";
 
@@ -108,7 +107,8 @@ const Terminal: React.FC = () => {
     } else {
       output = [`Command not found: ${lcmd}. Type 'help' for a list of commands.`];
     }
-    setHistory((h) => [...h, `${TERMINAL_PREFIX} ${cmd}`, ...output, ""]);
+    // Clear existing history, show just the prompt and output
+    setHistory([`${TERMINAL_PREFIX} ${cmd}`, ...output, ""]);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -154,7 +154,7 @@ const Terminal: React.FC = () => {
           return (
             <div
               key={idx}
-              className={`whitespace-pre-wrap sm:whitespace-pre-line break-words ${
+              className={`whitespace-pre break-words ${
                 isAscii ? "font-jetbrains leading-none text-green-400 font-bold text-base sm:text-sm" : ""
               }`}
               style={isAscii ? { fontWeight: 700 } : {}}

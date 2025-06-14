@@ -66,7 +66,7 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
           <div
             key={i}
             className={
-              "whitespace-pre-wrap sm:whitespace-pre-line break-words" +
+              "whitespace-pre break-words" +
               (isAscii ? " font-jetbrains leading-none text-green-400 text-base sm:text-sm" : "")
             }
             style={isAscii ? { fontWeight: 700 } : {}}
