@@ -63,26 +63,27 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
       {lines.map((l, i) => {
         const isAscii =
           i >= ASCII_INDEX_START && i < ASCII_INDEX_END && l.trim().length > 0;
-        // Mark bootloader and ascii as monospace-heavy with weight,
-        // all others just monospace and appropriate color.
-        const isBootloaderSection =
-          i >= SEQUENCE.findIndex(x => x.includes("Bootloader")) &&
-          i <= ASCII_INDEX_END;
+        // Bootloader and other normal text lines are now treated the same style.
         return (
           <div
             key={i}
             className={
-              `whitespace-pre` +
+              "whitespace-pre" +
               (isAscii
-                ? " font-jetbrains leading-none text-green-400"
-                : isBootloaderSection
-                  ? " font-jetbrains text-green-300"
-                  : " text-green-200"
+                ? " font-jetbrains leading-none"
+                : " font-jetbrains"
               )
             }
-            style={isAscii || isBootloaderSection
-              ? { fontWeight: 700 }
-              : { fontWeight: 400 }
+            style={
+              isAscii
+                ? {
+                    color: "#43FF82", // green accent for ASCII art (was text-green-400)
+                    fontWeight: 700,
+                  }
+                : {
+                    color: "#BCE5F3",
+                    fontWeight: 400,
+                  }
             }
           >
             {l}
