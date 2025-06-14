@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from "react";
 import StartupSequence from "./StartupSequence";
 
@@ -141,30 +142,46 @@ const Terminal: React.FC = () => {
     >
       <div
         ref={containerRef}
-        className="h-full w-full px-2 py-4 sm:px-1 sm:py-2 overflow-y-auto text-green-300 text-[16px] sm:text-[13px] xs:text-[12px] selection:bg-green-800/50 font-mono"
+        className="h-full w-full px-2 py-4 sm:px-1 sm:py-2 overflow-y-auto font-mono font-jetbrains text-base sm:text-sm xs:text-xs selection:bg-green-800/50"
         style={{
+          color: "#BCE5F3",
           fontFamily: "JetBrains Mono, Fira Mono, Menlo, monospace",
           textShadow: "0 0 4px #00FF41, 0 0 2px #33FF66",
           wordBreak: "break-word",
         }}
       >
         {history.map((line, idx) => {
-          // Show font-jetbrains, leading-none, green and bold for OCC_ASCII
-          const isAscii = idx < OCC_ASCII.length;
+          // OCC ASCII art should not wrap (overflow-x for monospace art lines), everything else wraps
+          const isAscii = idx < OCC_ASCII.length && OCC_ASCII.some(asciiLine => asciiLine.trim() === line.trim());
+          if (isAscii && line.trim().length > 0) {
+            return (
+              <div
+                key={idx}
+                className="overflow-x-auto whitespace-pre font-mono font-jetbrains text-base sm:text-sm"
+                style={{
+                  color: "#BCE5F3",
+                  fontWeight: 400,
+                }}
+              >
+                {line}
+              </div>
+            );
+          }
           return (
             <div
               key={idx}
-              className={`whitespace-pre break-words ${
-                isAscii ? "font-jetbrains leading-none text-green-400 font-bold text-base sm:text-sm" : ""
-              }`}
-              style={isAscii ? { fontWeight: 700 } : {}}
+              className="whitespace-pre-wrap break-words font-mono font-jetbrains text-base sm:text-sm"
+              style={{
+                color: "#BCE5F3",
+                fontWeight: 400,
+              }}
             >
               {line}
             </div>
           );
         })}
         <div className="flex items-center w-full py-1 gap-1 sm:gap-0">
-          <span className="text-green-400 min-w-fit">{TERMINAL_PREFIX}&nbsp;</span>
+          <span className="min-w-fit font-mono font-jetbrains text-base sm:text-sm" style={{ color: "#BCE5F3" }}>{TERMINAL_PREFIX}&nbsp;</span>
           <input
             ref={inputRef}
             type="text"
@@ -172,18 +189,20 @@ const Terminal: React.FC = () => {
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             autoFocus
-            className="bg-transparent border-none outline-none text-green-300 flex-1 text-[16px] sm:text-[14px] xs:text-[13px] font-mono caret-green-300 py-2 px-2 sm:py-3 sm:px-2 rounded focus:ring-2 focus:ring-green-400"
+            className="bg-transparent border-none outline-none flex-1 font-mono font-jetbrains text-base sm:text-sm caret-[#BCE5F3] py-2 px-2 sm:py-3 sm:px-2 rounded focus:ring-2"
             spellCheck={false}
             style={{
               width: '100%',
               minHeight: 40,
               maxHeight: 52,
+              color: "#BCE5F3",
               textShadow: "0 0 2px #00FF41, 0 0 4px #33FF66",
               WebkitTapHighlightColor: "transparent",
+              fontWeight: 400,
             }}
             inputMode="text"
           />
-          <span className="ml-1 animate-pulse text-green-400 select-none sm:ml-0">█</span>
+          <span className="ml-1 animate-pulse select-none sm:ml-0 font-mono font-jetbrains text-base sm:text-sm" style={{ color: "#BCE5F3" }}>█</span>
         </div>
       </div>
     </div>
@@ -191,3 +210,4 @@ const Terminal: React.FC = () => {
 };
 
 export default Terminal;
+
