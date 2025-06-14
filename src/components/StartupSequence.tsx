@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 
 const SEQUENCE = [
@@ -59,7 +58,9 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
   }, []);
 
   return (
-    <div className="mx-0 sm:mx-[-1rem] xs:mx-[-0.5rem] font-mono font-jetbrains text-base sm:text-sm">
+    <div
+      className="font-mono font-jetbrains text-base sm:text-sm"
+    >
       {lines.map((l, i) => {
         const isAscii =
           i >= ASCII_INDEX_START && i < ASCII_INDEX_END && l.trim().length > 0;
@@ -97,4 +98,3 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
 };
 
 export default StartupSequence;
-
