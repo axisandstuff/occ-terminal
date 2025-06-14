@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 
 const SEQUENCE = [
@@ -25,6 +26,7 @@ const SEQUENCE = [
   "╚██████╔╝╚██████╗╚██████╗",
   " ╚═════╝  ╚═════╝ ╚═════╝",
   "",
+  "Powered by Axis (Media division)",
   "[System OK] Boot sequence complete.",
   "",
 ];
@@ -98,3 +100,4 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
 };
 
 export default StartupSequence;
+
