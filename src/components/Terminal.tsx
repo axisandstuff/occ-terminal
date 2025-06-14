@@ -123,9 +123,9 @@ const Terminal: React.FC = () => {
 
   if (!bootDone) {
     return (
-      <div className="w-full h-screen flex flex-col items-center justify-center bg-black select-none text-[16px]">
-        <div className="max-w-4xl w-full mx-auto rounded overflow-hidden shadow-lg bg-black p-0">
-          <div className="font-mono text-green-400 text-base p-4 min-h-[70vh]">
+      <div className="w-full h-screen flex flex-col items-center justify-center bg-black select-none text-[16px] sm:text-[14px] xs:text-[13px] p-0 m-0">
+        <div className="w-full max-w-4xl mx-auto rounded overflow-hidden shadow-lg bg-black p-0">
+          <div className="font-mono text-green-400 text-base p-4 min-h-[70vh] sm:p-2 sm:text-[13px] xs:text-[12px]" style={{ wordBreak: 'break-word' }}>
             <StartupSequence onComplete={() => setBootDone(true)} />
           </div>
         </div>
@@ -135,24 +135,24 @@ const Terminal: React.FC = () => {
 
   return (
     <div
-      className="h-screen w-full overflow-hidden bg-black font-mono"
+      className="h-screen w-full overflow-hidden bg-black font-mono touch-none"
       onClick={() => inputRef.current?.focus()}
+      style={{ WebkitTapHighlightColor: "transparent", userSelect: "none" }}
     >
       <div
         ref={containerRef}
-        className="h-full w-full px-2 py-4 overflow-y-auto text-green-300 text-[16px] selection:bg-green-800/50"
+        className="h-full w-full px-2 py-4 sm:px-1 sm:py-2 overflow-y-auto text-green-300 text-[16px] sm:text-[13px] xs:text-[12px] selection:bg-green-800/50"
         style={{
           fontFamily: "JetBrains Mono, Fira Mono, Menlo, monospace",
           textShadow: "0 0 4px #00FF41, 0 0 2px #33FF66",
+          wordBreak: "break-word",
         }}
       >
         {history.map((line, idx) => (
-          <div key={idx} className="whitespace-pre">
-            {line}
-          </div>
+          <div key={idx} className="whitespace-pre-wrap sm:whitespace-pre-line break-words">{line}</div>
         ))}
-        <div className="flex items-center">
-          <span className="text-green-400">{TERMINAL_PREFIX}&nbsp;</span>
+        <div className="flex items-center w-full py-1 gap-1 sm:gap-0">
+          <span className="text-green-400 min-w-fit">{TERMINAL_PREFIX}&nbsp;</span>
           <input
             ref={inputRef}
             type="text"
@@ -160,14 +160,18 @@ const Terminal: React.FC = () => {
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             autoFocus
-            className="bg-transparent border-none outline-none text-green-300 flex-1 text-[16px] font-mono caret-green-300"
+            className="bg-transparent border-none outline-none text-green-300 flex-1 text-[16px] sm:text-[14px] xs:text-[13px] font-mono caret-green-300 py-2 px-2 sm:py-3 sm:px-2 rounded focus:ring-2 focus:ring-green-400"
             spellCheck={false}
             style={{
               width: '100%',
+              minHeight: 40,
+              maxHeight: 52,
               textShadow: "0 0 2px #00FF41, 0 0 4px #33FF66",
+              WebkitTapHighlightColor: "transparent",
             }}
+            inputMode="text"
           />
-          <span className="ml-1 animate-pulse text-green-400">█</span>
+          <span className="ml-1 animate-pulse text-green-400 select-none sm:ml-0">█</span>
         </div>
       </div>
     </div>

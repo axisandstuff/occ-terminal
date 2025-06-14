@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from "react";
 
-// Simulate a vintage boot sequence: motherboard, RAM, CPU detection, disks, BIOS dates...
 const SEQUENCE = [
   "PhoenixBIOS 4.0 Release 6.0     Copyright 1985-1998 Phoenix Technologies Ltd.",
   "All Rights Reserved",
@@ -33,7 +32,7 @@ const SEQUENCE = [
   "",
 ];
 
-const LINE_DELAY = 70; // ms per line for fast, smooth boot-up
+const LINE_DELAY = 70; // ms per line
 
 interface Props {
   onComplete: () => void;
@@ -56,13 +55,14 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
     }
     showNext();
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line
   }, []);
 
   return (
-    <div>
+    <div className="mx-0 sm:mx-[-1rem] xs:mx-[-0.5rem]">
       {lines.map((l, i) => (
-        <div key={i} className="whitespace-pre">{l}</div>
+        <div key={i} className="whitespace-pre-wrap sm:whitespace-pre-line break-words">
+          {l}
+        </div>
       ))}
     </div>
   );
