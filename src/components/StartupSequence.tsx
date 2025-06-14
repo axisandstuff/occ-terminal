@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 
 const SEQUENCE = [
@@ -58,18 +59,31 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
   }, []);
 
   return (
-    <div className="mx-0 sm:mx-[-1rem] xs:mx-[-0.5rem] font-mono">
+    <div className="mx-0 sm:mx-[-1rem] xs:mx-[-0.5rem] font-mono font-jetbrains text-base sm:text-sm">
       {lines.map((l, i) => {
         const isAscii =
           i >= ASCII_INDEX_START && i < ASCII_INDEX_END && l.trim().length > 0;
+        // Mark bootloader and ascii as monospace-heavy with weight,
+        // all others just monospace and appropriate color.
+        const isBootloaderSection =
+          i >= SEQUENCE.findIndex(x => x.includes("Bootloader")) &&
+          i <= ASCII_INDEX_END;
         return (
           <div
             key={i}
             className={
-              "whitespace-pre break-words" +
-              (isAscii ? " font-jetbrains leading-none text-green-400 text-base sm:text-sm" : "")
+              `whitespace-pre` +
+              (isAscii
+                ? " font-jetbrains leading-none text-green-400"
+                : isBootloaderSection
+                  ? " font-jetbrains text-green-300"
+                  : " text-green-200"
+              )
             }
-            style={isAscii ? { fontWeight: 700 } : {}}
+            style={isAscii || isBootloaderSection
+              ? { fontWeight: 700 }
+              : { fontWeight: 400 }
+            }
           >
             {l}
           </div>
