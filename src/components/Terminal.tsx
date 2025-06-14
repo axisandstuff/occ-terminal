@@ -14,7 +14,7 @@ const OCC_ASCII = [
 
 const INIT_PROMPTS = [
   "Welcome to the Open Computing Club's terminal! Here you can find information about our club in a simple way.",
-  'Do you have any new ideas that you\'d like to tell us? Type "ideas" and it will take you to a form!.', 
+  'Do you have any new ideas that you\'d like to tell us? Type "ideas" and it will take you to a form!',
   "",
   'If you find that the terminal is too cluttered, please refresh the page by typing "clear"',
   "",
