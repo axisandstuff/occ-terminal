@@ -141,7 +141,7 @@ const Terminal: React.FC = () => {
     >
       <div
         ref={containerRef}
-        className="h-full w-full px-2 py-4 sm:px-1 sm:py-2 overflow-y-auto text-green-300 text-[16px] sm:text-[13px] xs:text-[12px] selection:bg-green-800/50"
+        className="h-full w-full px-2 py-4 sm:px-1 sm:py-2 overflow-y-auto text-green-300 text-[16px] sm:text-[13px] xs:text-[12px] selection:bg-green-800/50 font-mono"
         style={{
           fontFamily: "JetBrains Mono, Fira Mono, Menlo, monospace",
           textShadow: "0 0 4px #00FF41, 0 0 2px #33FF66",
@@ -149,7 +149,7 @@ const Terminal: React.FC = () => {
         }}
       >
         {history.map((line, idx) => (
-          <div key={idx} className="whitespace-pre-wrap sm:whitespace-pre-line break-words">{line}</div>
+          <div key={idx} className={`whitespace-pre-wrap sm:whitespace-pre-line break-words ${idx < OCC_ASCII.length ? 'font-mono' : ''}`}>{line}</div>
         ))}
         <div className="flex items-center w-full py-1 gap-1 sm:gap-0">
           <span className="text-green-400 min-w-fit">{TERMINAL_PREFIX}&nbsp;</span>

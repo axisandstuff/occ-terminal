@@ -19,14 +19,12 @@ const SEQUENCE = [
   "",
   "Starting Open Computing Club (OCC) Bootloader...",
   "",
-  "   ______  _______  _______",
-  "  (  ___ \\(  ____ \\(  ___  )",
-  "  | (   ) ) (    \\/| (   ) |",
-  "  | (__/ /| (__    | |   | |",
-  "  |  __ ( |  __)   | |   | |",
-  "  | (  \\ \\| (      | |   | |",
-  "  | )___) ) (____/\\| (___) |",
-  "  |/ \\___/(_______/(_______)",
+  " ██████╗  ██████╗ ██████╗",
+  "██╔═══██╗██╔════╝██╔════╝",
+  "██║   ██║██║     ██║     ",
+  "██║   ██║██║     ██║     ",
+  "╚██████╔╝╚██████╗╚██████╗",
+  " ╚═════╝  ╚═════╝ ╚═════╝",
   "",
   "[System OK] Boot sequence complete.",
   "",
@@ -58,7 +56,7 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
   }, []);
 
   return (
-    <div className="mx-0 sm:mx-[-1rem] xs:mx-[-0.5rem]">
+    <div className="mx-0 sm:mx-[-1rem] xs:mx-[-0.5rem] font-mono">
       {lines.map((l, i) => (
         <div key={i} className="whitespace-pre-wrap sm:whitespace-pre-line break-words">
           {l}
