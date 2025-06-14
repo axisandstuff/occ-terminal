@@ -63,28 +63,30 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
       {lines.map((l, i) => {
         const isAscii =
           i >= ASCII_INDEX_START && i < ASCII_INDEX_END && l.trim().length > 0;
-        // Bootloader and other normal text lines are now treated the same style.
+        if (isAscii) {
+          // ASCII line: never wrap, allow horizontal scroll if needed
+          return (
+            <div
+              key={i}
+              className="overflow-x-auto whitespace-pre font-mono font-jetbrains text-base sm:text-sm"
+              style={{
+                color: "#BCE5F3",
+                fontWeight: 400,
+              }}
+            >
+              {l}
+            </div>
+          );
+        }
+        // Normal: wrap to viewport
         return (
           <div
             key={i}
-            className={
-              "whitespace-pre" +
-              (isAscii
-                ? " font-jetbrains leading-none"
-                : " font-jetbrains"
-              )
-            }
-            style={
-              isAscii
-                ? {
-                    color: "#43FF82", // green accent for ASCII art (was text-green-400)
-                    fontWeight: 700,
-                  }
-                : {
-                    color: "#BCE5F3",
-                    fontWeight: 400,
-                  }
-            }
+            className="whitespace-pre-wrap break-words font-mono font-jetbrains text-base sm:text-sm"
+            style={{
+              color: "#BCE5F3",
+              fontWeight: 400,
+            }}
           >
             {l}
           </div>
@@ -95,3 +97,4 @@ const StartupSequence: React.FC<Props> = ({ onComplete }) => {
 };
 
 export default StartupSequence;
+
