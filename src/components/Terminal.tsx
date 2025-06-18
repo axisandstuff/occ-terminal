@@ -100,7 +100,15 @@ const Terminal: React.FC = () => {
         "_blank"
       );
       output = ["Opening ideas form in a new tab..."];
-    } else if (COMMANDS[lcmd]) {
+    }
+    if (lcmd === "website") {
+      window.open(
+        "https://occ-official.vercel.app/",
+        "_blank"
+      );
+      output = ["Opening website in a new tab..."];
+    }
+     else if (COMMANDS[lcmd]) {
       const result = COMMANDS[lcmd];
       output = typeof result === "function" ? result([]) : result;
     } else {
